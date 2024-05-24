@@ -12,6 +12,7 @@ using StepChat.Classes.Auth;
 using StepChat.Classes.Configuration;
 using StepChat.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 //                              :-= +*****************************************+=
 //                          :+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%
@@ -51,13 +52,13 @@ namespace StepChat
 
             builder.Services.AddControllersWithViews();
 
-            //builder.Services.AddDbContext<MessengerDataDbContext>();
-
-            builder.Services.AddDbContext<MessengerDataDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<MessengerDataDbContext>();
 
             builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddTransient<IConfigService>(_ => new ConfigService("appsettings.json"));
+
+            builder.Services.AddDbContext<MessengerDataDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
             builder.Services.AddSingleton<IUserIdProvider, UserIdProvider>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -104,6 +105,20 @@ namespace StepChat
                 EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
                 ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
             });
+
+
+            //using (var context = new MessengerDataDbContext())
+            //{
+            //    // Прочитайте изображение из файла или источника данных
+            //    byte[] imageData = File.ReadAllBytes("C:\\Users\\salax\\RiderProjects\\StepChat\\wwwroot\\images\\blank-profile-picture.png");
+
+            //    // Создайте объект Image
+            //    var image = new Models.ImagesModel { ImageId = 0, Image = imageData };
+
+            //    // Добавьте изображение в контекст данных и сохраните изменения
+            //    context.Images.Add(image);
+            //    context.SaveChanges();
+            //}
 
             builder.Services.AddSession();
 

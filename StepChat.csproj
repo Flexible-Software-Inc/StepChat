@@ -82,10 +82,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Vonage" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Contexts\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

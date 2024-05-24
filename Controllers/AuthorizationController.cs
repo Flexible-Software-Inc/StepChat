@@ -102,7 +102,7 @@ namespace StepChat.Controllers
                         },
                         protocol: HttpContext.Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(user.Email + "@itstep.edu.az",
+                    await _emailSender.SendEmailAsync(user.Email,
                         $"<a href='{callbackUrl}'>Verify<a>");
 
                     return RedirectToAction("EmailConfirmationPage", "Authorization");

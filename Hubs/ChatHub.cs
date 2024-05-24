@@ -99,7 +99,7 @@ namespace StepChat.Hubs
                 await _context.AddAsync(messagesModel);
                 await _context.SaveChangesAsync();
 
-                var messagesStatusModel = new MessagesStatusModel() { Id = messagesModel.Id, UserId = id, IsRead = false };
+                var messagesStatusModel = new MessagesStatusModel() { UserId = id, IsRead = false };
                 await _context.AddAsync(messagesStatusModel);
                 await _context.SaveChangesAsync();
 

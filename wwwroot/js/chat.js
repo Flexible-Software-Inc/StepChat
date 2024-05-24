@@ -10,6 +10,34 @@ let isScrollIgnored = false;
 let messagesCount = 0;
 let allChatsId = [];
 
+
+const searchInput = document.getElementById('search-input');
+
+searchInput.addEventListener('input', function () {
+    const your_messages = document.querySelectorAll('.chat-message-container-your');
+    const frnd_messages = document.querySelectorAll('.chat-message-container-frnd');
+
+    const query = searchInput.value.toLowerCase();
+
+    your_messages.forEach(function (message) {
+        const messageText = message.textContent.toLowerCase();
+        if (messageText.includes(query)) {
+            message.style.display = "flex";
+        } else {
+            message.style.display = "none";
+        }
+    });
+
+    frnd_messages.forEach(function (message) {
+        const messageText = message.textContent.toLowerCase();
+        if (messageText.includes(query)) {
+            message.style.display = "flex";
+        } else {
+            message.style.display = "none";
+        }
+    });
+
+});
 function EncryptMessage(message) {
     var encrypted = CryptoJS.AES.encrypt(message, privateKey).toString();
 

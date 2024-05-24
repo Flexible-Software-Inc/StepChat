@@ -36,6 +36,10 @@ public partial class MessengerDataDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Data Source=LEGION;Initial Catalog=StepChat;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
